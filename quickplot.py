@@ -44,9 +44,12 @@ def quickplot(chanList, gpsLength=3600, gpsStop=correct_time().gpsSeconds):
     elif gpsLength <= 604800:
         units = 'days'
         timeDivisor = 86400
+    
+    displayTime = gpsLength/timeDivisor
+    t = linspace(0, displayTime, gpsLength*16)
 
     for dat in data:
-        plot(dat.data)
+        plot(t, dat.data)
 
     xlabel('Time {} from {} ({})'.format(units, tconvert(gpsStart), gpsStart))
 
