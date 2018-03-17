@@ -13,7 +13,7 @@ def correct_time():
     
     result = ssh.stdout.readlines()
     fb4gps = to_gps(result[0].strip('\n'))
-    print(from_gps(fb4gps))
+    print('{} ({})'.format(from_gps(fb4gps), fb4gps))
     return fb4gps
 
 def quickplot(chanList, gpsLength=3600, gpsStop=correct_time().gpsSeconds):
@@ -53,4 +53,37 @@ def quickplot(chanList, gpsLength=3600, gpsStop=correct_time().gpsSeconds):
 
     xlabel('Time {} from {} ({})'.format(units, tconvert(gpsStart), gpsStart))
 
-quickplot(['C3:PSL-SCAV_FSS_SLOWOUT'])
+    print(chans)
+    print('gpsLength = {}'.format(gpsLength))
+    print('gpsStop = {}'.format(gpsStop))
+
+# terminal args
+usage = 'quickplot.py <channel 1> <channel 2> ... <(optional) gpsLength> <(optional) gpsStop>'
+
+if len(sys.argv) < 2:
+    print(usage)
+
+elif len(sys.argv) >= 2:
+    chans = []
+    times = []
+
+    if sys.argv[1] == 'usage':
+        print(usage)
+
+    else: 
+        for item in sys.argv[1:]:
+            try:
+                times.append(int(item))
+
+            except ValueError:
+                chans.append(item)
+        
+        if len(times) == 0:
+            quickplot(chans)
+
+        elif len(times) == 1:
+            quickplot(chans, times[0])
+
+        elif len(times) == 2:
+            quickplot(chans, times[0], times[1])
+
