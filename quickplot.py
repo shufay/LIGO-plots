@@ -51,7 +51,7 @@ def quickplot(chanList, gpsLength=3600, gpsStop=correct_time().gpsSeconds):
     for dat in data:
         plot(t, dat.data)
 
-    xlabel('Time {} from {} ({})'.format(units, tconvert(gpsStart), gpsStart))
+    xlabel('Time [{}] from {} ({})'.format(units, tconvert(gpsStart), gpsStart))
 
     print(chanList)
     print('gpsLength = {}'.format(gpsLength))
