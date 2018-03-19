@@ -2,4 +2,7 @@
 Plotting program for LIGO lab data acquisition.
 
 #### quickplot.py
-Run from terminal: python quickplot.py <channel 1> <channel 2> ... <(optional) gpsLength> <(optional) gpsStop>
+
+On ws1, cd to `~/Git/LIGO-plots`, in Ipython: `%run quickplot.py <channel 1> <channel 2> ... <(optional) gpsLength> <(optional) gpsStop>`
+
+
